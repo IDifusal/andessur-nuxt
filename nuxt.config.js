@@ -4,24 +4,29 @@ export default {
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: "andessur-nuxt",
+    title: "ONG Andes Sur Expertos en Desarrollo Economico Social Cultural",
     htmlAttrs: {
       lang: "en",
     },
     meta: [
       { charset: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { hid: "description", name: "description", content: "" },
+      {
+        hid: "description",
+        name: "description",
+        content:
+          "Ong Andes Sur trabajamos constantemente por el desarrollo de la región sur del país, conoce nuestros proyectos y servicios. ",
+      },
       { name: "format-detection", content: "telephone=no" },
     ],
     link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }],
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: [],
+  css: ["~/assets/app.css"],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [],
+  plugins: ['~/plugins/firebase.js','~/plugins/editor.js'],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -31,32 +36,9 @@ export default {
     // https://go.nuxtjs.dev/tailwindcss
     "@nuxtjs/tailwindcss",
   ],
-
+  firebase: {},
   // Modules: https://go.nuxtjs.dev/config-modules
-  modules: [
-    ["@nuxtjs/firebase",
-    {
-      config: {
-        apiKey: "AIzaSyC1T37d59hUIhAhbrhyztUOSQhz-okGnNc",
-        authDomain: "ong-andes-sur.firebaseapp.com",
-        projectId: "ong-andes-sur",
-        storageBucket: "ong-andes-sur.appspot.com",
-        messagingSenderId: "319024319197",
-        appId: "1:319024319197:web:3c393892bb23d9d056e934",
-      },
-      services: {
-        auth: {
-          initialize: {
-            onAuthStateChangedAction: "onAuthStateChanged",
-          },
-          ssr: true,
-        },
-      },
-    },
-  ]
-  ],
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
-
 };
