@@ -57,12 +57,13 @@
             "
             >Categoria</label
           >
-          <input
-            type="text"
-            v-model="item.category"
-            required
-            class="input bg-white block w-full"
-          />
+          <select required v-model="item.category" class="select select-bordered bg-white w-full">
+            <option
+              v-for="(item, index) in categories"
+              :key="index"
+              :value="item.value"
+            >{{item.text}}</option>
+          </select>
         </div>
         <div class="w-1/2">
           <label
@@ -79,6 +80,12 @@
             >Imagen Destacada</label
           >
           <WidgetImage @cleanImg="clearImg" @changed="onFileChange" />
+          <progress
+            v-if="uploading.active"
+            class="progress progress-accent w-full"
+            :value="uploading.porcentage"
+            max="100"
+          ></progress>
         </div>
       </div>
       <div
@@ -138,7 +145,7 @@
           </div>
         </div>
       </div>
-      <button @click="sendForm" class="btn btn-primary mt-5">Button</button>
+      <button @click="sendForm" class="btn btn-primary mt-5">Guardar</button>
     </div>
   </div>
 </template>
@@ -159,28 +166,44 @@ export default {
   },
   data() {
     return {
+      uploading: { active: false, porcentage: 0 },
       errorTitle: false,
       errorCate: false,
       errorContent: false,
-        ile: null,
+      categories: [
+        {
+          value: "ong",
+          text: "ONG",
+        },
+        {
+          value: "tableta",
+          text: "Tableta para tu carpeta",
+        },
+        {
+          value: "pueblo",
+          text: "Adopta un pueblo",
+        },
+      ],
       item: {
         title: "",
         content: "",
-        category: "",
+        category: "ong",
         url: "",
+        slug:""
       },
     };
   },
   methods: {
     onFileChange(e) {
       this.file = e[0];
-      this.uploadImage()
+      this.uploadImage();
     },
     clearImg() {
       this.file = null;
     },
     async uploadImage() {
       if (this.file != null) {
+        this.uploading.active = true;
         const storage = getStorage();
         const storageRef = ref(storage, `${this.file.name}`);
         const uploadTask = uploadBytesResumable(storageRef, this.file);
@@ -189,7 +212,7 @@ export default {
           (snapshot) => {
             const progress =
               (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-            console.log("Upload is " + progress + "% done");
+            this.uploading.porcentage = progress;
           },
           (error) => {
             console.log(error);
@@ -198,11 +221,12 @@ export default {
             getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
               console.log("File available at", downloadURL);
               this.item.url = downloadURL;
+              this.uploading.active = false;
             });
           }
         );
-      }else{
-        return
+      } else {
+        return;
       }
     },
     async sendForm() {
@@ -227,9 +251,9 @@ export default {
         this.item.content != ""
       ) {
         try {
-          const docRef = await addDoc(collection(db, "blog"), this.item);
-          console.log(docRef);
-          alert("Success!");
+          this.item.slug = this.item.title.split(" ").join("-")
+          await addDoc(collection(db, "blog"), this.item);
+          this.$router.push("/dashboard/blog");
         } catch (e) {
           alert("Error!");
           console.error(e);
