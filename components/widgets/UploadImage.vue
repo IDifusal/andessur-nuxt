@@ -83,7 +83,7 @@
       class="clearButton"
       @click="reset"
     >
-      {{ clearAll ? clearAll : "Clear" }}
+      {{ clearAll ? clearAll : "Borrar" }}
     </div>
   </div>
 </template>
@@ -202,7 +202,7 @@ export default {
 .container {
   width: 100%;
   height: 80px;
-  background: #f7fafc;
+  background: white;
   display: flex;
   place-items: center;
   background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='10' ry='10' stroke='%23BABABAFF' stroke-width='1' stroke-dasharray='8' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e");

@@ -26,7 +26,11 @@ export default {
   css: ["~/assets/app.css"],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: ['~/plugins/firebase.js','~/plugins/editor.js'],
+  plugins: [
+    "~/plugins/firebase.js",
+    "~/plugins/editor.js",
+    "~/plugins/vue-agile",
+  ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -40,5 +44,7 @@ export default {
   // Modules: https://go.nuxtjs.dev/config-modules
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {},
+  build: {
+    transpile: ["vue-agile"],
+  },
 };

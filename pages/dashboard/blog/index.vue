@@ -27,7 +27,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr v-for="item in items" :key="item.id">
+            <tr v-for="item in getPosts" :key="item.id">
               <th>{{ item.title }}</th>
               <td>{{ item.category }}</td>
               <td>{{ item.author }}</td>
@@ -48,7 +48,7 @@
                   </button>
                 </div>
                 <div class="tooltip" data-tip="Editar">
-                  <nuxt-link :to="`/dashboard/blog/editar/${item.id}`">
+                  <nuxt-link :to="`/dashboard/blog/editar/${item.slug}`">
                     <button class="btn btn-square">
                       <svg width="32" height="32" viewBox="0 0 24 24">
                         <path
@@ -98,8 +98,6 @@
   </div>
 </template>
 <script>
-import { collection, getDocs, query } from "firebase/firestore";
-import { db } from "~/plugins/firebase.js";
 export default {
   layout: "dashboard",
   data() {
@@ -122,6 +120,11 @@ export default {
       },
     };
   },
+  computed:{
+    getPosts(){
+      return this.$store.getters.getPosts
+    }
+  },
   methods: {
     closeModal() {
       document.getElementById("my-modal-4").checked = false;
@@ -133,31 +136,6 @@ export default {
     activeItem(item) {
       this.activePost = item;
     },
-    async getItems() {
-      const querySnapshot = await getDocs(collection(db, "blog"));
-      let content = [];
-      querySnapshot.forEach((doc) => {
-        content.push(doc.data());
-      });
-      this.items = content;
-    },
-  },
-  mounted() {
-    this.getItems();
-  },
-  // async asyncData({ app }) {
-  //   const messageRef = app.$fire.firestore.collection("blog");
-  //   try {
-  //     const snapshot = await messageRef.get();
-  //     const doc = snapshot.data();
-  //     if (!doc) {
-  //       // console.info('Document does not exist.')
-  //       return;
-  //     }
-  //     console.info(doc.message)
-  //   } catch (e) {
-  //     console.error(e);
-  //   }
-  // },
+  }
 };
 </script>

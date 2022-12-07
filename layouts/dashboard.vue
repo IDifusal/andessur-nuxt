@@ -3,7 +3,7 @@
     <Header />
     <div class="content-dashboard">
       <Sidebar />
-      <div class="p-3">
+      <div class="p-5">
         <Nuxt />
       </div>
     </div>
@@ -18,11 +18,16 @@ export default {
     Sidebar,
     Header,
   },
+  head() {
+    return {
+      title:  "AndesSur | Dashboard",
+    };
+  },
 };
 </script>
 <style>
-.content-dashboard{
-    display:grid;
-    grid-template-columns: 10% 90%;
+.content-dashboard {
+  display: grid;
+  grid-template-columns: 10% 90%;
 }
 </style>

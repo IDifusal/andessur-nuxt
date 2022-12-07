@@ -9,11 +9,12 @@ module.exports = {
           secondary: "#D926A9",
           accent: "#1FB2A6",
           neutral: "#191D24",
-          "base-100": "#2A303C",
+          "base-100": "#f0f0f1",
           info: "#3ABFF8",
           success: "#36D399",
           warning: "#FBBD23",
           error: "#F87272",
+          white:"#FFFFFF",
         },
       },
     ],
@@ -22,7 +23,10 @@ module.exports = {
     colors: {
       primary: "#1fa185",
       ong: "#1fa185",
-      white:"#FFFFFF"
+      white:"#FFFFFF",
+      black:"#1d2327",
+      hoverdash:"#72AEE6",
+      ong:'#10393b'
     },
   },
   variants: {
