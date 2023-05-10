@@ -1,5 +1,5 @@
 <template>
-  <div class="container m-auto">
+  <div class="container mt-10 mx-auto p-3 md:p-0">
     <h3>Servicios</h3>
     <div
       class="grid grid-cols-1 md:grid-cols-3 justify-items-center gap-y-6 py-10"
@@ -37,7 +37,7 @@ export default {
         {
           title: "Asesoría en Gestión Pública",
           desciption: "Dada la experiencia precedida de la ONG Andessur, realiza consultoría y asesoramiento para desarrollar y llevar a cabo proyectos para el sector público (Municipalidades locales y distritales)",
-          img: "https://eiposgrado.edu.pe/wp-content/uploads/2019/07/BLOG-PORTADA.png",
+          img: "https://www.iydisac.com/images/servicios/asesoria.jpg",
         },
       ],
     };

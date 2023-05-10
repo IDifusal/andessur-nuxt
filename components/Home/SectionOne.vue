@@ -1,5 +1,5 @@
 <template>
-  <div class="container m-auto">
+  <div class="container m-auto p-3 md:p-0">
     <div class="flex items-center md:gap-x-10">
       <div class="md:w-1/2">
         <h2>Compromiso con la educacion</h2>

@@ -1,5 +1,5 @@
 <template>
-  <div class="container m-auto md:mt-10">
+  <div class="container m-auto md:mt-10" @click="goProducts">
     <h3>Productos</h3>
     <div
       class="grid grid-cols-1 md:grid-cols-3 justify-items-center gap-y-6 py-10"
@@ -42,6 +42,11 @@ export default {
       ],
     };
   },
+  methods:{
+    goProducts(){
+      this.$router.push('productos-solidarios')
+    }
+  }
 };
 </script>
 

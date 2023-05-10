@@ -7,9 +7,9 @@
   >
     <div class="header__container container flex m-auto">
       <div class="header__icon w-1/3">
-        <img src="~/assets/ongadessur-logo2.png">
+        <img @click="goHome" src="~/assets/ongadessur-logo2.png" class="cursor-pointer">
       </div>
-      <div class="header__menu w-2/3">
+      <div class="header__menu w-2/3 hidden md:flex">
         <a v-for="(item, index) in links" :key="index" :href="item.link">{{
           item.text
         }}</a>
@@ -65,6 +65,9 @@ export default {
     }
   },
   methods: {
+    goHome(){
+      this.$router.push("/")
+    },
     handleResize() {
       this.window.width = window.innerWidth
       this.window.height = window.innerHeight
@@ -110,7 +113,6 @@ export default {
     justify-items: center;
   }
   &__menu {
-    display: flex;
     justify-content: space-between;
     align-items: center;
   }

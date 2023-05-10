@@ -695,11 +695,16 @@ h2{
   font-weight: 700;
 }
 h3{
-  font-size: 48px;
+  font-size: 22px;
   line-height: 1.2;
   font-weight: 800;
   color: #0b363d;
   font-style: normal;
+}
+@media(min-with:750px){
+  h3{
+    font-size: 48px;
+  }
 }
 @media (min-width: 1536px){
   .container {

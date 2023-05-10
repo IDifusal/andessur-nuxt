@@ -1,7 +1,7 @@
 <template>
     <div class="bg-ong">
         <div class="container m-auto">
-            <div class="hero w-screen h-screen bg flex">
+            <div class="hero w-screen h-screen bg flex flex-col md:flex-row justify-center">
                 <div class="md:w-1/2 hero-title text-white font-extrabold flex md:block flex-col items-center">
                     <h1 class="text-[43px] md:text-7xl text-center md:text-left">
                         {{ title }} <br>
@@ -14,7 +14,7 @@
                     </p>
                 </div>
                 <div class="md:w-1/2 md:flex items-center">
-                    <img src="~/assets/img/ong-andes-sur.png" alt="" class="img-ref">
+                    <img src="~/assets/img/ong-andes-sur.png" alt="" class="img-ref m-auto md:m-0">
                 </div>
             </div>
         </div>
@@ -46,8 +46,19 @@ export default {
     & p {
         font-size: 18px;
     }
+    @media(max-width:700px){
+        & h1{
+        line-height: 1;
+        }        
+        & .text-2xl{
+            line-height: .7 !important;
+        }
+    }
 }
 .img-ref{
-    width: 62%;
+    width: 35%;
+    @media(min-width:700px){
+        width: 62%;
+    }
 }
 </style>
